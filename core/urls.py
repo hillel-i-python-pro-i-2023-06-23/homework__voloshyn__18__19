@@ -16,10 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 
 from application import views
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="API",
+        default_version='v1',
+        description="API",
+    ),
+    public=True,
+)
+
 urlpatterns = [
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("admin/", admin.site.urls),
+    path('contacts/', views.view_contacts, name='view-contacts'),
+    path('contacts/create/', views.create_contact, name='create-contact'),
+    path('contacts/view/<int:pk>/', views.view_contact, name='view-contact'),
+    path('contacts/edit/<int:pk>/', views.edit_contact, name='edit-contact'),
+    path('contacts/delete/<int:pk>/', views.delete_contact, name='delete-contact'),
 
 ]
