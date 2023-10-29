@@ -98,7 +98,7 @@ init-dev-i-migrate-all:
 .PHONY: init-dev-i-create-superuser-cmd
 # Create superuser
 init-dev-i-create-superuser-cmd:
-	@DJANGO_SUPERUSER_PASSWORD=admin123 python manage.py createsuperuser --user admin --email admin@gmail.com --no-input
+	@DJANGO_SUPERUSER_PASSWORD=admin123 python3 manage.py createsuperuser --user admin --email admin@gmail.com --no-input
 
 .PHONY: init-dev-i-create-superuser
 # Create superuser
